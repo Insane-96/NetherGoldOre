@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "inventory": [{
+      "textures": {
+        "all": "nethergoldore:blocks/nether_gold_ore"
+      }
+    }],
+	"normal": [
+		{ "model": "nethergoldore:nether_gold_ore" },
+		{ "model": "nethergoldore:nether_gold_ore", "x": 90 },
+		{ "model": "nethergoldore:nether_gold_ore", "x": 180 },
+		{ "model": "nethergoldore:nether_gold_ore", "x": 270 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 90 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 90, "x": 90 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 90, "x": 180 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 90, "x": 270 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 180 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 180, "x": 90 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 180, "x": 180 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 180, "x": 270 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 270 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 270, "x": 90 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 270, "x": 180 },
+		{ "model": "nethergoldore:nether_gold_ore", "y": 270, "x": 270 }
+	]
+  }
+}

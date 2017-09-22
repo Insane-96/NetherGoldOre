@@ -24,6 +24,12 @@ public class RegistryEventHandler {
 			event.getRegistry().register(block);
 	}
 	
+	@SubscribeEvent
+	public static void RegisterItems(RegistryEvent.Register<Item> event) {
+		for (Block block : ModBlocks.BLOCKS)
+			event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
+	
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void RegisterModels(ModelRegistryEvent event) {

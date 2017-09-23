@@ -30,7 +30,7 @@ public class ModBlocks {
 		GameRegistry.register(netherGoldOre);
 		GameRegistry.register(new ItemBlock(netherGoldOre), location);
 		
-		GameRegistry.registerWorldGenerator(new NetherGenOres(), 0);
+		GameRegistry.registerWorldGenerator(new NetherGenOres(), 100);
 	}
 	
 	public static void PostInit() {

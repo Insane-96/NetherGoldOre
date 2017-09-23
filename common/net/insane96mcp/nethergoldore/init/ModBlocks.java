@@ -29,7 +29,7 @@ public class ModBlocks {
 		netherGoldOre.setHarvestLevel("pickaxe", 2);
 		BLOCKS.add(netherGoldOre);
 		
-		GameRegistry.registerWorldGenerator(new NetherGenOres(), 0);
+		GameRegistry.registerWorldGenerator(new NetherGenOres(), 100);
 	}
 	
 	public static void PostInit() {

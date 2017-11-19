@@ -5,7 +5,7 @@ import java.util.Random;
 
 import net.insane96mcp.nethergoldore.NetherGoldOre;
 import net.insane96mcp.nethergoldore.lib.Names;
-import net.insane96mcp.nethergoldore.lib.Stats;
+import net.insane96mcp.nethergoldore.lib.Properties;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -19,20 +19,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockNetherGoldOre extends BlockOre{
-
-	private int minNuggetsPerOre = Stats.minNuggetsPerOre;
-	private int maxNuggetsPerOre = Stats.maxNuggetsPerOre;
-	private float fortune_multiplier = Stats.fortune_multiplier;
-	
-	private int minExperienceDrop = Stats.minExperienceDrop;
-	private int maxExperienceDrop = Stats.maxExperienceDrop;
-
-	private int pigmanAggroRadius = Stats.pigmanAggroRadius;
-	private int pigmanAggroChance = Stats.pigmanAggroChance;
-	
-	private int ignitePlayerChance = Stats.ignitePlayerChance;
-	private int ignitePlayerSeconds = Stats.ignitePlayerSeconds;
-	
 	public BlockNetherGoldOre() {
 		
 	}
@@ -49,24 +35,20 @@ public class BlockNetherGoldOre extends BlockOre{
 	}
 	
 	private void PigmanAggro(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		if (worldIn.rand.nextInt(100) >= pigmanAggroChance)
-			return;
-		
-		BlockPos pos1 = new BlockPos(pos.getX() - pigmanAggroRadius, pos.getY() - pigmanAggroRadius, pos.getZ() - pigmanAggroRadius);
-		BlockPos pos2 = new BlockPos(pos.getX() + pigmanAggroRadius, pos.getY() + pigmanAggroRadius, pos.getZ() + pigmanAggroRadius);
-		AxisAlignedBB radius = new AxisAlignedBB(pos1, pos2);
-		List<EntityPigZombie> pigmen = worldIn.getEntitiesWithinAABB(EntityPigZombie.class, radius);
+		BlockPos corner1 = new BlockPos(pos.getX() - Properties.OreProperties.pigmanAggroRadius, pos.getY() - Properties.OreProperties.pigmanAggroRadius, pos.getZ() - Properties.OreProperties.pigmanAggroRadius);
+		BlockPos corner2 = new BlockPos(pos.getX() + Properties.OreProperties.pigmanAggroRadius, pos.getY() + Properties.OreProperties.pigmanAggroRadius, pos.getZ() + Properties.OreProperties.pigmanAggroRadius);
+		AxisAlignedBB AABBradius = new AxisAlignedBB(corner1, corner2);
+		List<EntityPigZombie> pigmen = worldIn.getEntitiesWithinAABB(EntityPigZombie.class, AABBradius);
 		
 		for (EntityPigZombie pigman : pigmen) {
-			pigman.setRevengeTarget(player);
+			if (worldIn.rand.nextFloat() < Properties.OreProperties.pigmanAggroChance / 100f)
+				pigman.setRevengeTarget(player);
 		}
 	}
 	
 	private void IgnitePlayer(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		if (worldIn.rand.nextInt(100) >= ignitePlayerChance)
-			return;
-		
-		player.setFire(ignitePlayerSeconds);
+		if (worldIn.rand.nextFloat() < Properties.OreProperties.ignitePlayerChance / 100f)
+			player.setFire(Properties.OreProperties.ignitePlayerSeconds);
 	}
 	
 	@Override
@@ -76,15 +58,15 @@ public class BlockNetherGoldOre extends BlockOre{
 	
 	@Override
 	public int quantityDropped(Random random) {
-		return minNuggetsPerOre + random.nextInt(maxNuggetsPerOre + 1 - minNuggetsPerOre);
+		return Properties.OreDrops.minNuggetsPerOre + random.nextInt(Properties.OreDrops.maxNuggetsPerOre + 1 - Properties.OreDrops.minNuggetsPerOre);
 	}
 	
 	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random) {
 		if (fortune > 0)
         {
-            int minNuggets = minNuggetsPerOre;
-            int maxNuggets = maxNuggetsPerOre + (int)(maxNuggetsPerOre * (fortune * fortune_multiplier));
+            int minNuggets = Properties.OreDrops.minNuggetsPerOre;
+            int maxNuggets = Properties.OreDrops.maxNuggetsPerOre + (int)(Properties.OreDrops.maxNuggetsPerOre * (fortune * Properties.OreDrops.fortune_multiplier));
             
             return minNuggets + random.nextInt(maxNuggets + 1 - minNuggets);
         }
@@ -97,6 +79,6 @@ public class BlockNetherGoldOre extends BlockOre{
 	@Override
 	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
-		return MathHelper.getInt(rand, minExperienceDrop, maxExperienceDrop);
+		return MathHelper.getInt(rand, Properties.OreDrops.minExperienceDrop, Properties.OreDrops.maxExperienceDrop);
 	}
 }

@@ -3,6 +3,7 @@ package net.insane96mcp.nethergoldore.init;
 import net.insane96mcp.nethergoldore.NetherGoldOre;
 import net.insane96mcp.nethergoldore.block.BlockNetherGoldOre;
 import net.insane96mcp.nethergoldore.lib.Names;
+import net.insane96mcp.nethergoldore.worldgen.OreGeneration;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,8 +30,7 @@ public class ModBlocks {
 		netherGoldOre.setHarvestLevel("pickaxe", 2);
 		GameRegistry.register(netherGoldOre);
 		GameRegistry.register(new ItemBlock(netherGoldOre), location);
-		
-		GameRegistry.registerWorldGenerator(new NetherGenOres(), 100);
+		GameRegistry.registerWorldGenerator(new OreGeneration(), 100);
 	}
 	
 	public static void PostInit() {

@@ -1,4 +1,4 @@
-package net.insane96mcp.nethergoldore;
+package net.insane96mcp.nethergoldore.lib;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;

@@ -1,4 +1,4 @@
-package net.insane96mcp.nethergoldore;
+package net.insane96mcp.nethergoldore.proxies;
 
 import net.insane96mcp.nethergoldore.init.ModBlocks;
 import net.minecraft.client.Minecraft;

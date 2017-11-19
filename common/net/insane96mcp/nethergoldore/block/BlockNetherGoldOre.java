@@ -79,6 +79,6 @@ public class BlockNetherGoldOre extends BlockOre{
 	@Override
 	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
-		return MathHelper.getInt(rand, Properties.OreDrops.minExperienceDrop, Properties.OreDrops.maxExperienceDrop);
+		return MathHelper.getRandomIntegerInRange(rand, Properties.OreDrops.minExperienceDrop, Properties.OreDrops.maxExperienceDrop);
 	}
 }

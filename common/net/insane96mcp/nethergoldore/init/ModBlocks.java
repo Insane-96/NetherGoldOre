@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import net.insane96mcp.nethergoldore.NetherGoldOre;
 import net.insane96mcp.nethergoldore.block.BlockNetherGoldOre;
 import net.insane96mcp.nethergoldore.lib.Names;
+import net.insane96mcp.nethergoldore.worldgen.OreGeneration;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import scala.reflect.internal.Trees.This;
 
 public class ModBlocks {
 	
@@ -29,7 +29,7 @@ public class ModBlocks {
 		netherGoldOre.setHarvestLevel("pickaxe", 2);
 		BLOCKS.add(netherGoldOre);
 		
-		GameRegistry.registerWorldGenerator(new NetherGenOres(), 100);
+		GameRegistry.registerWorldGenerator(new OreGeneration(), 100);
 	}
 	
 	public static void PostInit() {

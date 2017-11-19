@@ -1,6 +1,8 @@
-package net.insane96mcp.nethergoldore;
+package net.insane96mcp.nethergoldore.proxies;
 
 import net.insane96mcp.nethergoldore.init.ModBlocks;
+import net.insane96mcp.nethergoldore.lib.Config;
+import net.insane96mcp.nethergoldore.lib.Properties;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -10,6 +12,7 @@ public class CommonProxy {
 	public void PreInit(FMLPreInitializationEvent event) {
 		Config.config = new Configuration(event.getSuggestedConfigurationFile());
 		Config.SyncConfig();
+		Properties.Init();
 
 		ModBlocks.Init();
 	}

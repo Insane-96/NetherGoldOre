@@ -1,4 +1,4 @@
-package net.insane96mcp.nethergoldore.lib;
+package net.insane96mcp.nethergoldore.events;
 
 import net.insane96mcp.nethergoldore.NetherGoldOre;
 import net.insane96mcp.nethergoldore.init.ModBlocks;

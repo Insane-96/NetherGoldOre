@@ -30,8 +30,8 @@ public class BlockNetherGoldOre extends BlockOre{
 	
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		PigmanAggro(worldIn, pos, state, player);
-		IgnitePlayer(worldIn, pos, state, player);
+		this.PigmanAggro(worldIn, pos, state, player);
+		this.IgnitePlayer(worldIn, pos, state, player);
 	}
 	
 	private void PigmanAggro(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
@@ -58,17 +58,17 @@ public class BlockNetherGoldOre extends BlockOre{
 	
 	@Override
 	public int quantityDropped(Random random) {
-		return Properties.OreDrops.minNuggetsPerOre + random.nextInt(Properties.OreDrops.maxNuggetsPerOre + 1 - Properties.OreDrops.minNuggetsPerOre);
+		return MathHelper.getInt(random, Properties.OreDrops.minNuggetsPerOre, Properties.OreDrops.maxNuggetsPerOre);
 	}
 	
 	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random) {
 		if (fortune > 0)
         {
-            int minNuggets = Properties.OreDrops.minNuggetsPerOre;
-            int maxNuggets = Properties.OreDrops.maxNuggetsPerOre + (int)(Properties.OreDrops.maxNuggetsPerOre * (fortune * Properties.OreDrops.fortune_multiplier));
+            int minNuggets = Properties.OreDrops.minNuggetsPerOre + fortune;
+            int maxNuggets = Properties.OreDrops.maxNuggetsPerOre + fortune;
             
-            return minNuggets + random.nextInt(maxNuggets + 1 - minNuggets);
+            return MathHelper.getInt(random, minNuggets, maxNuggets);
         }
         else
         {

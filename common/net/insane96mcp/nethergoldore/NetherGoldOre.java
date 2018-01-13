@@ -18,7 +18,7 @@ public class NetherGoldOre {
 	
 	public static final String MOD_ID = "nethergoldore";
 	public static final String MOD_NAME = "Nether Gold Ore";
-	public static final String VERSION = "1.1.0";
+	public static final String VERSION = "1.1.1";
 	public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ":";
 	public static final String MINECRAFT_VERSIONS = "[1.12, 1.12.2]";
 

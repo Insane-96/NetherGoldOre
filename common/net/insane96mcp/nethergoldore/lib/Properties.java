@@ -42,13 +42,13 @@ public class Properties {
 	
 	public static class OreGeneration{
 		public static int blockCount;
-		public static int perChunk;
+		public static float perChunk;
 		public static int minY;
 		public static int maxY;
 	
 		public static void Init() {
 			blockCount = Config.LoadIntProperty("ore_generation", "block_per_vein", "Number of blocks generated per vein (not exact)", 22);
-			perChunk = Config.LoadIntProperty("ore_generation", "vein_per_chunk", "Number of veins that have to try to spawn per chunk", 1);
+			perChunk = Config.LoadFloatProperty("ore_generation", "vein_per_chunk", "Number of veins that have to try to spawn per chunk, values below 1 will be chance per chunk to spawn. (By default there's 80% chance for a vein to spawn per chunk)", 0.8f);
 			minY = Config.LoadIntProperty("ore_generation", "min_Y", "The minimum height (Y) to try to generate Veins", 0);
 			maxY = Config.LoadIntProperty("ore_generation", "max_Y", "The maximum height (Y) to try to generate Veins", 128);
 		}

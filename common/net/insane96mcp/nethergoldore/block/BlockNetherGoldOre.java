@@ -61,7 +61,7 @@ public class BlockNetherGoldOre extends BlockOre{
 	public int quantityDroppedWithBonus(int fortune, Random random) {
 		if (fortune > 0)
         {
-            int minNuggets = Properties.serverConfig.drops.minNuggetsPerOre + fortune;
+            int minNuggets = Properties.serverConfig.drops.minNuggetsPerOre;
             int maxNuggets = Properties.serverConfig.drops.maxNuggetsPerOre + fortune;
             
             return MathHelper.getInt(random, minNuggets, maxNuggets);

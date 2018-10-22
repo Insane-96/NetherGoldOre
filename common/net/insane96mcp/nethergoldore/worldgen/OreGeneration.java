@@ -18,12 +18,12 @@ public class OreGeneration implements IWorldGenerator {
 
 	private final WorldGenMinable worldGenMinableNether;
 
-	private float perChunk = Properties.OreGeneration.perChunk;
-	private int minY = Properties.OreGeneration.minY;
-	private int maxY = Properties.OreGeneration.maxY;
+	private float veinPerChunk = Properties.serverConfig.generation.veinPerChunk;
+	private int minY = Properties.serverConfig.generation.minY;
+	private int maxY = Properties.serverConfig.generation.maxY;
 	
 	public OreGeneration() {
-		worldGenMinableNether = new WorldGenMinable(ModBlocks.netherGoldOre.getDefaultState(), Properties.OreGeneration.blockCount, BlockMatcher.forBlock(Blocks.NETHERRACK));
+		worldGenMinableNether = new WorldGenMinable(ModBlocks.netherGoldOre.getDefaultState(), Properties.serverConfig.generation.orePerVein, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	}
 	
 	@Override
@@ -32,12 +32,12 @@ public class OreGeneration implements IWorldGenerator {
 		BlockPos chunkPos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
 
 		if (world.provider.getDimension() == -1) {
-			if (perChunk > 1f) {
-				for (int i = 0; i < perChunk; i++) {
+			if (veinPerChunk > 1f) {
+				for (int i = 0; i < veinPerChunk; i++) {
 					worldGenMinableNether.generate(world, random, chunkPos.add(7, MathHelper.getInt(random, minY, maxY), 7));
 				}
 			}
-			else if (random.nextFloat() <= perChunk) {
+			else if (random.nextFloat() <= veinPerChunk) {
 				worldGenMinableNether.generate(world, random, chunkPos.add(7, MathHelper.getInt(random, minY, maxY), 7));
 			}
 		}

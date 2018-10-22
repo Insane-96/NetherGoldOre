@@ -24,31 +24,27 @@ public class BlockNetherGoldOre extends BlockOre{
 	}
 	
 	@Override
-	public String getUnlocalizedName() {
+	public String getTranslationKey() {
 		return "tile." + NetherGoldOre.RESOURCE_PREFIX + Names.NETHER_GOLD_ORE;
 	}
 	
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
 		this.PigmanAggro(worldIn, pos, state, player);
-		this.IgnitePlayer(worldIn, pos, state, player);
 	}
 	
 	private void PigmanAggro(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		BlockPos corner1 = new BlockPos(pos.getX() - Properties.OreProperties.pigmanAggroRadius, pos.getY() - Properties.OreProperties.pigmanAggroRadius, pos.getZ() - Properties.OreProperties.pigmanAggroRadius);
-		BlockPos corner2 = new BlockPos(pos.getX() + Properties.OreProperties.pigmanAggroRadius, pos.getY() + Properties.OreProperties.pigmanAggroRadius, pos.getZ() + Properties.OreProperties.pigmanAggroRadius);
+		float radius = Properties.serverConfig.oreProperties.pigmanAggroRadius;
+		
+		BlockPos corner1 = new BlockPos(pos.getX() - radius, pos.getY() - radius, pos.getZ() - radius);
+		BlockPos corner2 = new BlockPos(pos.getX() + radius, pos.getY() + radius, pos.getZ() + radius);
 		AxisAlignedBB AABBradius = new AxisAlignedBB(corner1, corner2);
 		List<EntityPigZombie> pigmen = worldIn.getEntitiesWithinAABB(EntityPigZombie.class, AABBradius);
 		
 		for (EntityPigZombie pigman : pigmen) {
-			if (worldIn.rand.nextFloat() < Properties.OreProperties.pigmanAggroChance / 100f)
+			if (worldIn.rand.nextFloat() < Properties.serverConfig.oreProperties.pigmanAggroChance / 100f)
 				pigman.setRevengeTarget(player);
 		}
-	}
-	
-	private void IgnitePlayer(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		if (worldIn.rand.nextFloat() < Properties.OreProperties.ignitePlayerChance / 100f)
-			player.setFire(Properties.OreProperties.ignitePlayerSeconds);
 	}
 	
 	@Override
@@ -58,15 +54,15 @@ public class BlockNetherGoldOre extends BlockOre{
 	
 	@Override
 	public int quantityDropped(Random random) {
-		return MathHelper.getInt(random, Properties.OreDrops.minNuggetsPerOre, Properties.OreDrops.maxNuggetsPerOre);
+		return MathHelper.getInt(random, Properties.serverConfig.drops.minNuggetsPerOre, Properties.serverConfig.drops.maxNuggetsPerOre);
 	}
 	
 	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random) {
 		if (fortune > 0)
         {
-            int minNuggets = Properties.OreDrops.minNuggetsPerOre + fortune;
-            int maxNuggets = Properties.OreDrops.maxNuggetsPerOre + fortune;
+            int minNuggets = Properties.serverConfig.drops.minNuggetsPerOre + fortune;
+            int maxNuggets = Properties.serverConfig.drops.maxNuggetsPerOre + fortune;
             
             return MathHelper.getInt(random, minNuggets, maxNuggets);
         }
@@ -79,6 +75,6 @@ public class BlockNetherGoldOre extends BlockOre{
 	@Override
 	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
-		return MathHelper.getInt(rand, Properties.OreDrops.minExperienceDrop, Properties.OreDrops.maxExperienceDrop);
+		return MathHelper.getInt(rand, Properties.serverConfig.drops.minExperienceDrop, Properties.serverConfig.drops.maxExperienceDrop);
 	}
 }

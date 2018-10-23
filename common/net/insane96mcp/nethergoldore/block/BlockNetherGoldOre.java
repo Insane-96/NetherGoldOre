@@ -34,7 +34,7 @@ public class BlockNetherGoldOre extends BlockOre{
 	}
 	
 	private void PigmanAggro(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		float radius = Properties.serverConfig.oreProperties.pigmanAggroRadius;
+		float radius = Properties.config.oreProperties.pigmanAggroRadius;
 		
 		BlockPos corner1 = new BlockPos(pos.getX() - radius, pos.getY() - radius, pos.getZ() - radius);
 		BlockPos corner2 = new BlockPos(pos.getX() + radius, pos.getY() + radius, pos.getZ() + radius);
@@ -42,7 +42,7 @@ public class BlockNetherGoldOre extends BlockOre{
 		List<EntityPigZombie> pigmen = worldIn.getEntitiesWithinAABB(EntityPigZombie.class, AABBradius);
 		
 		for (EntityPigZombie pigman : pigmen) {
-			if (worldIn.rand.nextFloat() < Properties.serverConfig.oreProperties.pigmanAggroChance / 100f)
+			if (worldIn.rand.nextFloat() < Properties.config.oreProperties.pigmanAggroChance / 100f)
 				pigman.setRevengeTarget(player);
 		}
 	}
@@ -54,16 +54,15 @@ public class BlockNetherGoldOre extends BlockOre{
 	
 	@Override
 	public int quantityDropped(Random random) {
-		return MathHelper.getInt(random, Properties.serverConfig.drops.minNuggetsPerOre, Properties.serverConfig.drops.maxNuggetsPerOre);
+		return MathHelper.getInt(random, Properties.config.drops.minNuggetsPerOre, Properties.config.drops.maxNuggetsPerOre);
 	}
 	
 	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random) {
 		if (fortune > 0)
         {
-            int minNuggets = Properties.serverConfig.drops.minNuggetsPerOre;
-            int maxNuggets = Properties.serverConfig.drops.maxNuggetsPerOre + fortune;
-            
+            int minNuggets = Properties.config.drops.minNuggetsPerOre;
+            int maxNuggets = Properties.config.drops.maxNuggetsPerOre + fortune;
             return MathHelper.getInt(random, minNuggets, maxNuggets);
         }
         else
@@ -75,6 +74,6 @@ public class BlockNetherGoldOre extends BlockOre{
 	@Override
 	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
-		return MathHelper.getInt(rand, Properties.serverConfig.drops.minExperienceDrop, Properties.serverConfig.drops.maxExperienceDrop);
+		return MathHelper.getInt(rand, Properties.config.drops.minExperienceDrop, Properties.config.drops.maxExperienceDrop);
 	}
 }

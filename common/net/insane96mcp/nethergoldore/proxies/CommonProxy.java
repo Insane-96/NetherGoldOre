@@ -12,9 +12,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
 	public void PreInit(FMLPreInitializationEvent event) {
-		//ConfigLib.config = new Configuration(event.getSuggestedConfigurationFile());
-		//ConfigLib.SyncConfig();
-
 		ModBlocks.Init();
 		
 		MinecraftForge.EVENT_BUS.register(Properties.class);
@@ -27,6 +24,6 @@ public class CommonProxy {
 	}
 	
 	public void PostInit(FMLPostInitializationEvent event) {
-		//if(ConfigLib.config.hasChanged()) ConfigLib.SaveConfig();
+
 	}
 }

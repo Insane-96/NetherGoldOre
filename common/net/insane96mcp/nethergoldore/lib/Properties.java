@@ -7,15 +7,14 @@ import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 @Config(modid = NetherGoldOre.MOD_ID, name = "NetherGoldOre", category = "")
 public class Properties {
 
 	@Name("Config")
-	public static final ConfigOptions serverConfig = new ConfigOptions();
-	
-	//private static final ConfigOptions clientConfig = new ConfigOptions();
+	public static final ConfigOptions config = new ConfigOptions();
 	
 	public static class ConfigOptions {
 		
@@ -57,12 +56,21 @@ public class Properties {
 		}
 	}
 
-    @SubscribeEvent
-    public void onConfigChangedEvent(OnConfigChangedEvent event)
-    {
-        if (event.getModID().equals(NetherGoldOre.MOD_ID))
-        {
-            ConfigManager.sync(NetherGoldOre.MOD_ID, Type.INSTANCE);
-        }
-    }
+	@Mod.EventBusSubscriber(modid = NetherGoldOre.MOD_ID)
+	private static class EventHandler{
+	    public static void onConfigChangedEvent(OnConfigChangedEvent event)
+	    {
+	        if (event.getModID().equals(NetherGoldOre.MOD_ID))
+	        {
+	            ConfigManager.sync(NetherGoldOre.MOD_ID, Type.INSTANCE);
+	        }
+	    }
+	    
+	    public static void onPlayerLoggedIn(PlayerLoggedInEvent event) {
+	    	if (event.player.world.isRemote)
+	    		return;
+	    	
+	    	
+	    }
+	}
 }

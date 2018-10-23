@@ -18,12 +18,12 @@ public class OreGeneration implements IWorldGenerator {
 
 	private final WorldGenMinable worldGenMinableNether;
 
-	private float veinPerChunk = Properties.serverConfig.generation.veinPerChunk;
-	private int minY = Properties.serverConfig.generation.minY;
-	private int maxY = Properties.serverConfig.generation.maxY;
+	private float veinPerChunk = Properties.config.generation.veinPerChunk;
+	private int minY = Properties.config.generation.minY;
+	private int maxY = Properties.config.generation.maxY;
 	
 	public OreGeneration() {
-		worldGenMinableNether = new WorldGenMinable(ModBlocks.netherGoldOre.getDefaultState(), Properties.serverConfig.generation.orePerVein, BlockMatcher.forBlock(Blocks.NETHERRACK));
+		worldGenMinableNether = new WorldGenMinable(ModBlocks.netherGoldOre.getDefaultState(), Properties.config.generation.orePerVein, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	}
 	
 	@Override

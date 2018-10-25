@@ -1,7 +1,7 @@
 [
 {
-  "modid": "nethergoldores",
-  "name": "Nether Gold Ores",
+  "modid": "nethergoldore",
+  "name": "Nether Gold Ore",
   "description": "Gold ore into the nether. But be aware. Gold is Pigman's treasure, so they may get angry at you if you steal it",
   "version": "${version}",
   "mcversion": "${mcversion}",

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import net.insane96mcp.nethergoldore.NetherGoldOre;
-import net.insane96mcp.nethergoldore.lib.Names;
 import net.insane96mcp.nethergoldore.lib.Properties;
+import net.insane96mcp.nethergoldore.lib.Strings.Names;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPigZombie;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import net.insane96mcp.nethergoldore.NetherGoldOre;
 import net.insane96mcp.nethergoldore.block.BlockNetherGoldOre;
-import net.insane96mcp.nethergoldore.lib.Names;
+import net.insane96mcp.nethergoldore.lib.Strings.Names;
 import net.insane96mcp.nethergoldore.worldgen.OreGeneration;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;

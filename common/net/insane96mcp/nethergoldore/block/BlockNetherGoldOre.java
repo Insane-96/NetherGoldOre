@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.insane96mcp.nethergoldore.NetherGoldOre;
 import net.insane96mcp.nethergoldore.lib.Properties;
+import net.insane96mcp.nethergoldore.lib.Reflection;
 import net.insane96mcp.nethergoldore.lib.Strings.Names;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
@@ -12,9 +13,12 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -42,9 +46,16 @@ public class BlockNetherGoldOre extends BlockOre{
 		List<EntityPigZombie> pigmen = worldIn.getEntitiesWithinAABB(EntityPigZombie.class, AABBradius);
 		
 		for (EntityPigZombie pigman : pigmen) {
-			if (worldIn.rand.nextFloat() < Properties.config.oreProperties.pigmanAggroChance / 100f)
-				pigman.setRevengeTarget(player);
+			RayTraceResult rayTraceResult = pigman.world.rayTraceBlocks(player.getPositionEyes(1.0f), pigman.getPositionEyes(1.0f), true, true, false);
+			if ((rayTraceResult == null && worldIn.rand.nextInt(1) == 0)
+				|| (rayTraceResult != null && worldIn.rand.nextFloat() < Properties.config.oreProperties.pigmanAggroChance / 100f)) {
+				DamageSource damageSource = new EntityDamageSourceIndirect("generic", player, player);
+				
+				Reflection.Invoke(Reflection.becomeAngryAt, pigman, player);
+			}
 		}
+		
+		
 	}
 	
 	@Override

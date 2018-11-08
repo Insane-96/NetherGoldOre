@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public class BlockNetherGoldOre extends BlockOre{
 	public BlockNetherGoldOre() {
-		
+		super();
 	}
 	
 	@Override
@@ -47,7 +47,7 @@ public class BlockNetherGoldOre extends BlockOre{
 		
 		for (EntityPigZombie pigman : pigmen) {
 			RayTraceResult rayTraceResult = pigman.world.rayTraceBlocks(player.getPositionEyes(1.0f), pigman.getPositionEyes(1.0f), true, true, false);
-			if ((rayTraceResult == null && worldIn.rand.nextInt(1) == 0)
+			if ((rayTraceResult == null && worldIn.rand.nextInt(Properties.config.oreProperties.pigmanSeeChance) == 0)
 				|| (rayTraceResult != null && worldIn.rand.nextFloat() < Properties.config.oreProperties.pigmanAggroChance / 100f)) {
 				DamageSource damageSource = new EntityDamageSourceIndirect("generic", player, player);
 				

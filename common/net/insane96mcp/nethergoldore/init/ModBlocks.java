@@ -7,7 +7,6 @@ import net.insane96mcp.nethergoldore.block.BlockNetherGoldOre;
 import net.insane96mcp.nethergoldore.lib.Strings.Names;
 import net.insane96mcp.nethergoldore.worldgen.OreGeneration;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -23,7 +22,6 @@ public class ModBlocks {
 		ResourceLocation location = new ResourceLocation(NetherGoldOre.MOD_ID, Names.NETHER_GOLD_ORE);
 		netherGoldOre = new BlockNetherGoldOre();
 		netherGoldOre.setRegistryName(location);
-		netherGoldOre.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		netherGoldOre.setHardness(3.0f);
 		netherGoldOre.setResistance(5f);
 		netherGoldOre.setHarvestLevel("pickaxe", 2);

@@ -53,7 +53,7 @@ public class Properties {
 			@Name("Pigman See Chance")
 			@Comment("Chance (1 in x) for zombie pigman to get aggroed when a nether gold ore is mined and the pigman see the player.s")
 			@RangeInt(min = 1)
-			public float pigmanSeeChance = 4;
+			public int pigmanSeeChance = 4;
 			@Name("Pigman Aggro Radius")
 			@Comment("Radius (from ore mined) for zombie pigman to get aggroed when a nether gold ore is mined\nThe radius has to be intended as a cube and not a sphere")
 			@RangeDouble(min = 0f, max = Float.MAX_VALUE)
